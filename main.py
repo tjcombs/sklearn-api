@@ -14,7 +14,7 @@ app = Flask(__name__)
 @app.route('/predict', methods=['POST'])
 def predict():
      df = pd.read_json(request.json)
-     prediction = clf.predict(df)
+     prediction = model.predict(df)
      return jsonify({'prediction': list(prediction)})
  
 if __name__ == '__main__':
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     from sklearn.linear_model import LinearRegression
     df = pd.DataFrame({'A':[1, 2, 3, 4], 'B':[2, 3, 4, 5]})
     df['y'] = df['A'] + df['B'] + 5
-    clf = LinearRegression()
-    clf.fit(df[['A', 'B']], df['y'])
+    model = LinearRegression()
+    model.fit(df[['A', 'B']], df['y'])
     
     app.run()

@@ -23,9 +23,3 @@ class ModelAPI:
         prediction = pd.DataFrame(r.json())
         r.close()
         return prediction['prediction']
-
-if __name__ == '__main__':
-    model = ModelAPI(api_url = 'http://127.0.0.1:5000/')
-    df = pd.DataFrame({'A': [3, 6, 7], 'B': [9, 4, 3]})
-    df['y'] = model.predict(df[['A', 'B']])
-    assert((df['y'] == df['A'] + df['B'] + 5).all())
